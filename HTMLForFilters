@@ -1,0 +1,94 @@
+            <div class="col-4 mt-5">
+                <div class="row">
+                    <div class="col-4">
+                        <label>Blur <input id="enableBlur" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="BlurSliderContainer" hidden>
+                        <input type="range" id="BlurSlider" min="0" max="50" value="0" oninput="GetSliderVals()">
+                        <label id="BlurSliderLabel"></label>
+                    </div>
+                    <div class="col-1" id="BlurReset" hidden>
+                        <Button onclick="BlurReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Brightness <input id="enableBrightness" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="BrightnessSliderContainer" hidden>
+                        <input type="range" id="BrightnessSlider" min="0" max="1000" value="100" oninput="GetSliderVals()">
+                        <label id="BrightnessSliderLabel"></label>
+                    </div>
+                    <div class="col-1" id="BrightnessReset" hidden>
+                        <Button onclick="BrightnessReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Contrast <input id="enableContrast" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="ContrastSliderContainer" hidden>
+                        <input type="range" id="ContrastSlider" min="0" max="1000" value="100" oninput="GetSliderVals()">
+                        <label id="ContrastSliderLabel"></label>
+                    </div>
+                    <div class="col-1" id="ContrastReset" hidden>
+                        <Button onclick="ContrastReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Grayscale <input id="enableGrayscale" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="GrayscaleSliderContainer" hidden>
+                    </div>
+                    <div class="col-1" id="GrayscaleReset" hidden>
+                        <Button onclick="GrayscaleReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Hue <input id="enableHue" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="HueSliderContainer" hidden>
+                        <input type="range" id="HueSlider" min="0" max="360" value="0" oninput="GetSliderVals()">
+                        <label id="HueSliderLabel"></label>
+                    </div>
+                    <div class="col-1" id="HueReset" hidden>
+                        <Button onclick="HueReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Invert <input id="enableInvert" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="InvertSliderContainer" hidden>
+                        <input type="range" id="InvertSlider" min="0" max="100" value="0" oninput="GetSliderVals()">
+                        <label id="InvertSliderLabel"></label>
+                    </div>
+                    <div class="col-1" id="InvertReset" hidden>
+                        <Button onclick="InvertReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label>Opacity <input id="enableOpacity" type="checkbox" value="" onclick="GetSliderVals()"></label>
+                    </div>
+                    <div class="col-6" id="OpacitySliderContainer" hidden>
+                        <input type="range" id="OpacitySlider" min="0" max="100" value="100" oninput="GetSliderVals()">
+                        <label id="OpacitySliderLabel"></label>
+                    </div>
+                    <div class="col-1" id="OpacityReset" hidden>
+                        <Button onclick="OpacityReset()">Reset</Button>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <input type="file" onchange="changeImage(this)">
+
+                </div>
+                <div class="row">
+
+                    <input id="btnSave" type="button" onclick="download_img(this)">
+
+                </div>
+            </div>
