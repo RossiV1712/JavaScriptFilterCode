@@ -1,0 +1,196 @@
+    <script>
+        function GetSliderVals() {
+            var OutPut = "";
+
+
+            var BlurEnable = document.getElementById("enableBlur").checked;
+            if (BlurEnable == true) {
+                document.getElementById("BlurSliderContainer").removeAttribute("hidden");
+                document.getElementById("BlurReset").removeAttribute("hidden");
+
+                var Blur = document.getElementById("BlurSlider").value;
+                document.getElementById("BlurSliderLabel").innerHTML = Blur + "px";
+                OutPut += "blur(" + Blur + "px) ";
+            } else {
+                document.getElementById("BlurSliderContainer").setAttribute("hidden", true);
+                document.getElementById("BlurReset").setAttribute("hidden", true);
+            }
+
+
+
+            var BrightEnable = document.getElementById("enableBrightness").checked;
+            if (BrightEnable == true) {
+                document.getElementById("BrightnessSliderContainer").removeAttribute("hidden");
+                document.getElementById("BrightnessReset").removeAttribute("hidden");
+
+                var Brightness = document.getElementById("BrightnessSlider").value;
+                document.getElementById("BrightnessSliderLabel").innerHTML = Brightness + "%";
+                OutPut += "brightness(" + Brightness + "%)";
+            } else {
+                document.getElementById("BrightnessSliderContainer").setAttribute("hidden", true);
+                document.getElementById("BrightnessReset").setAttribute("hidden", true);
+            }
+
+
+
+            var ContrastEnable = document.getElementById("enableContrast").checked;
+            if (ContrastEnable == true) {
+                document.getElementById("ContrastSliderContainer").removeAttribute("hidden");
+                document.getElementById("ContrastReset").removeAttribute("hidden");
+
+                var Contrast = document.getElementById("ContrastSlider").value;
+                document.getElementById("ContrastSliderLabel").innerHTML = Contrast + "";
+                OutPut += "contrast(" + Contrast + "%) ";
+            } else {
+                document.getElementById("ContrastSliderContainer").setAttribute("hidden", true);
+                document.getElementById("ContrastReset").setAttribute("hidden", true);
+            }
+
+
+            var grayscaleEnable = document.getElementById("enableGrayscale").checked;
+            if (grayscaleEnable == true) {
+                document.getElementById("GrayscaleSliderContainer").removeAttribute("hidden");
+                document.getElementById("GrayscaleReset").removeAttribute("hidden");
+
+                OutPut += "grayscale(1) ";
+            } else {
+                document.getElementById("GrayscaleSliderContainer").setAttribute("hidden", true);
+                document.getElementById("GrayscaleReset").setAttribute("hidden", true);
+            }
+
+            var HueEnable = document.getElementById("enableHue").checked;
+            if (HueEnable == true) {
+                document.getElementById("HueSliderContainer").removeAttribute("hidden");
+                document.getElementById("HueReset").removeAttribute("hidden");
+
+                var Hue = document.getElementById("HueSlider").value;
+                document.getElementById("HueSliderLabel").innerHTML = Hue + "deg";
+                OutPut += "hue-rotate(" + Hue + "deg) ";
+            } else {
+                document.getElementById("HueSliderContainer").setAttribute("hidden", true);
+                document.getElementById("HueReset").setAttribute("hidden", true);
+            }
+
+            var InvertEnable = document.getElementById("enableInvert").checked;
+            if (InvertEnable == true) {
+                document.getElementById("InvertSliderContainer").removeAttribute("hidden");
+                document.getElementById("InvertReset").removeAttribute("hidden");
+
+                var Invert = document.getElementById("InvertSlider").value;
+                document.getElementById("InvertSliderLabel").innerHTML = Invert + "%";
+                OutPut += "invert(" + Invert + "%) ";
+            } else {
+                document.getElementById("InvertSliderContainer").setAttribute("hidden", true);
+                document.getElementById("InvertReset").setAttribute("hidden", true);
+            }
+
+            var OpacityEnable = document.getElementById("enableOpacity").checked;
+            if (OpacityEnable == true) {
+                document.getElementById("OpacitySliderContainer").removeAttribute("hidden");
+                document.getElementById("OpacityReset").removeAttribute("hidden");
+
+                var Opacity = document.getElementById("OpacitySlider").value;
+                document.getElementById("OpacitySliderLabel").innerHTML = Opacity + "%";
+                OutPut += "opacity(" + Opacity + "%) ";
+            } else {
+                document.getElementById("OpacitySliderContainer").setAttribute("hidden", true);
+                document.getElementById("OpacityReset").setAttribute("hidden", true);
+            }
+
+            $("#image").css("filter", OutPut);
+        }
+
+
+        function BlurReset() {
+            document.getElementById("BlurSlider").value = 0;
+            document.getElementById("BlurSliderLabel").innerHTML = 0;
+            GetSliderVals();
+        }
+
+        function BrightnessReset() {
+            document.getElementById("BrightnessSlider").value = 100;
+            document.getElementById("BrightnessSliderLabel").innerHTML = "100%";
+            GetSliderVals();
+        }
+
+        function ContrastReset() {
+            document.getElementById("ContrastSlider").value = 100;
+            document.getElementById("ContrastSliderLabel").innerHTML = 100;
+            GetSliderVals();
+        }
+
+        function GrayscaleReset() {
+            document.getElementById("enableGrayscale").checked = false;
+            GetSliderVals();
+        }
+
+        function HueReset() {
+            document.getElementById("HueSlider").value = 0;
+            document.getElementById("HueSliderLabel").value = "0deg";
+            GetSliderVals();
+        }
+
+        function InvertReset() {
+            document.getElementById("InvertSlider").value = 0;
+            document.getElementById("InvertSliderLabel").value = "0%";
+            GetSliderVals();
+        }
+
+        function OpacityReset() {
+            document.getElementById("OpacitySlider").value = 100;
+            document.getElementById("OpacitySliderLabel").value = "100%";
+            GetSliderVals();
+        }
+
+        function changeImage(UploadedImage) {
+            if (UploadedImage.files && UploadedImage.files[0]) {
+                var FileToUpload = new FileReader();
+
+                FileToUpload.onload = function(Details) {
+                    $("#image").attr('src', Details.target.result);
+                }
+
+                FileToUpload.readAsDataURL(UploadedImage.files[0])
+            }
+        }
+
+        var canvas = document.getElementById('WholePolaroid');
+
+        $('#Download').on('click', function(e) {
+            download(canvas, "edited.jpg");
+        });
+
+        function download(canvas, filename) {
+            var e;
+            var lnk = document.createElement('a');
+
+            lnk.download = filename;
+            lnk.href = canvas.toDataURL("image/jpeg", 0.8);
+
+            if (document.createEvent) {
+                e = document.createEvent("MouseEvents");
+                e.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                lnk.dispatchEvent(e);
+            } else if (lnk.fireEvent) {
+                lnk.fireEvent("onclick");
+            }
+        }
+
+        $(function() {
+            $("#btnSave").click(function() {
+                alert("a");
+                html2canvas($("#WholePolaroid"), {
+                    onrendered: function(canvas) {
+                        theCanvas = canvas;
+                        document.body.appendChild(canvas);
+
+                        // Convert and download as image 
+                        Canvas2Image.saveAsPNG(canvas);
+                        $("#img-out").append(canvas);
+                        // Clean up 
+                        //document.body.removeChild(canvas);
+                    }
+                });
+            });
+        });
+    </script>
